@@ -1,20 +1,148 @@
-{% extends "master.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Career Counseling Services</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #4CAF50;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .hero {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .services-section {
+            background-color: #e9ecef;
+            padding: 50px 0;
+        }
+        .services-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .tools-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+        .footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+ 
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Career Counseling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light" href="#">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+ 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Empower Your Future with Career Counseling</h1>
+            <p>Get personalized career advice and expert guidance to make informed career decisions.</p>
+            <a href="#" class="btn btn-success btn-lg">Get Started</a>
+        </div>
+    </section>
+ 
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Personalized Counseling</h4>
+                    <p>Schedule one-on-one sessions with expert counselors to explore various career paths based on your interests and strengths.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Career Assessments</h4>
+                    <p>Take an interest quiz and get recommendations tailored to your skills, values, and goals.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Workshops & Resources</h4>
+                    <p>Access additional resources such as career guides, job market insights, and resume-building workshops.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Tools Section -->
+    {% comment %} <section class="tools-section">
+        <div class="container">
+            <h2>Technologies We Use</h2>
+            <ul class="list-unstyled">
+                <li><strong>Django</strong> – For backend development.</li>
+                <li><strong>SQL</strong> – Database management.</li>
+                <li><strong>HTML/CSS/Bootstrap</strong> – Frontend design.</li>
+                <li><strong>Python</strong> – Core programming.</li>
+                <li><strong>BeautifulSoup</strong> – Web scraping to gather career data.</li>
+            </ul>
+        </div>
+    </section> {% endcomment %}
+ 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Online Career Counseling Services.</p>
+        </div>
+    </footer>
+ 
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+{% comment %} {% extends "master.html" %}
 
 {% block body %}
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                {% comment %} <div id="wowslider-container1">
-                    <div class="ws_images">
-                        <ul>
-                            <li><img src="/static/Images/Slider/b3.jpg" alt="3" title="3" id="wows1_0" /></li>
-                            <li><img src="/static/Images/GettyImages-1130678533_473619_xj1qdn.jpg" alt="1" title="1" id="wows1_1" /></li>
-                            <li><img src="/static/Images/tesla-model-3-supercharger.jpg" alt="2 carousel" title="4" id="wows1_2" /></a></li>
-                        </ul>
-                    </div>
-                    <div class="ws_shadow"></div>
-                </div> {% endcomment %}
+               
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
@@ -36,8 +164,6 @@
                       <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                {% comment %} <script type="text/javascript" src="/static/engine1/wowslider.js"></script>
-                <script type="text/javascript" src="/static/engine1/script.js"></script> {% endcomment %}
                 <br />
                 <br />
                 <br />
@@ -55,4 +181,4 @@
         </div>
     </div>
 </div>
-{% endblock body %}
+{% endblock body %} {% endcomment %}
