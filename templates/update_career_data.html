@@ -1,0 +1,27 @@
+{% extends 'career_base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Update Career Data</h1>
+    
+    {% if messages %}
+    <div class="mb-4">
+        {% for message in messages %}
+            <div class="p-4 rounded {% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <form method="post" class="bg-white rounded-lg shadow-md p-6">
+        {% csrf_token %}
+        <p class="mb-4">Click the button below to update career data from external sources.</p>
+        <button type="submit" 
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                onclick="this.disabled=true;this.innerText='Updating...';">
+            Update Data
+        </button>
+    </form>
+</div>
+{% endblock %}

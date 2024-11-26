@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counselor Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'css/counsellorIndex.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper d-flex">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="{% static 'images/discussion.png' %}" alt="Profile" class="profile-img">
+                <h4>{{ counselor_profile.name }}</h4>
+                <p>Professional Counselor</p>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-user"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-calendar-check"></i> Booking History</a>
+                </li>
+                <li>
+                    <a href="#" onclick="openSettings()"><i class="fas fa-cogs"></i> Profile Settings</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content" class="w-100 p-4">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-bell"></i>
+                                <span class="badge bg-danger notification-count">0</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><div class="notification-list"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Profile Overview</h5>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="info-box">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>{{ counselor_profile.email }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="info-box">
+                                        <i class="fas fa-phone"></i>
+                                        <span>{{ counselor_profile.phone }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="info-box">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span>{{ counselor_profile.experience }} years experience</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="info-box">
+                                        <i class="fas fa-location-dot"></i>
+                                        {% comment %} <span>{{ counselor_profile.city }}, {{ counselor_profile.address }}</span> {% endcomment %}
+                                        <span> {{ counselor_profile.address }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Booking History</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-2" onclick="exportBookings()">
+                                        <i class="fas fa-download"></i> Export
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#filterSection">
+                                        <i class="fas fa-filter"></i> Filters
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="filterSection" class="collapse mb-3">
+                                <div class="card card-body bg-light">
+                                    <form id="filterForm" class="row g-3">
+                                        {% csrf_token %}
+                                        <div class="col-md-4">
+                                            <label class="form-label">Client Name</label>
+                                            <input type="text" class="form-control" name="client_name" id="clientName">
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <label class="form-label">Date Range</label>
+                                            <select class="form-select" name="date_filter" id="dateFilter">
+                                                <option value="">All Time</option>
+                                                <option value="today">Today</option>
+                                                <option value="week">This Week</option>
+                                                <option value="month">This Month</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <label class="form-label">Status</label>
+                                            <select class="form-select" name="status" id="statusFilter">
+                                                <option value="">All Status</option>
+                                                <option value="scheduled">Scheduled</option>
+                                                <option value="completed">Completed</option>
+                                                <option value="cancelled">Cancelled</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="col-12 mt-3">
+                                            <button type="submit" class="btn btn-primary">Apply Filters</button>
+                                            <a href="{% url 'counsellorIndex' %}" class="btn btn-secondary ms-2">Clear Filters</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                           <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bookingsTableBody">
+                                        {% for booking in bookings %}
+                                        <tr data-booking-id="{{ booking.id }}">
+                                            <td>{{ booking.client_name }}</td>
+                                            <td>{{ booking.date }}</td>
+                                            <td>{{ booking.time }}</td>
+                                            <td>
+                                                 <span class="badge {% if booking.status == 'scheduled' %}bg-primary{% elif booking.status == 'cancelled' %}bg-danger{% else %}bg-success{% endif %}">
+                                                    {{ booking.status|title }}
+                                                </span> 
+                                                {% comment %} {{booking.status | title}} {% endcomment %}
+                                            </td>
+                                            <td>
+                                                <div class="btn">
+                                                    <button class="btn btn-sm btn-outline-primary view-details" 
+                                                            onclick="viewBookingDetails('{{ booking.id }}')"
+                                                            data-booking-id="{{ booking.id }}"
+                                                            title="View Details">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="5" class="text-center">No bookings found</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="modal fade" id="bookingDetailsModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Booking Details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body" id="bookingDetails">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Available Slots</h5>
+                            
+                            <form id="slotForm" method="POST">
+                                {% csrf_token %}
+                                <div class="slots-container">
+                                    {% with selected_slots=counselor_profile.get_booking_slots %}
+                                        {% for hour in available_slots %}
+                                            <div class="form-check mb-2">
+                                                <input type="checkbox" 
+                                                       class="form-check-input" 
+                                                       name="slots[]" 
+                                                       value="{{ hour }}" 
+                                                       id="slot_{{ hour|slugify }}"
+                                                       {% if hour in selected_slots %}checked="checked"{% endif %}>
+                                                <label class="form-check-label" for="slot_{{ hour|slugify }}">
+                                                    {{ hour }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    {% endwith %}
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mt-3">Update Slots</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bookingDetailsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Booking Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="bookingDetails">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Profile Settings</h5>
+                    {% comment %} <button type="button" class="btn-close" data-bs-dismiss="modal"></button> {% endcomment %}
+                </div>
+                <div class="modal-body">
+                    <form id="settingsForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" name="phone" value="{{ counselor_profile.phone }}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" name="address" rows="2">{{ counselor_profile.address }}</textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Experience (years)</label>
+                            <input type="number" class="form-control" name="experience" value="{{ counselor_profile.experience }}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Current Password</label>
+                            <input type="password" class="form-control" name="current_password">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">New Password (leave blank if no change)</label>
+                            <input type="password" class="form-control" name="new_password">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" name="confirm_password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    {% comment %} <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button> {% endcomment %}
+                    <button type="button" class="btn btn-secondary" onclick="handleCancel()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="updateSettings()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% csrf_token %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/counselorIndex.js' %}"></script>
+</body>
+</html>

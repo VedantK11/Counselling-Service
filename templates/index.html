@@ -3,182 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Career Counseling Services</title>
+    <title>Edu-Power | Student Career Counseling</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .navbar {
-            background-color: #4CAF50;
-        }
-        .navbar-brand, .nav-link {
-            color: #fff !important;
-        }
-        .hero {
-            background-color: #f8f9fa;
-            padding: 50px 0;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .services-section {
-            background-color: #e9ecef;
-            padding: 50px 0;
-        }
-        .services-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .tools-section {
-            background-color: #f8f9fa;
-            padding: 50px 0;
-        }
-        .footer {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
- 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">Career Counseling</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-light" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-light" href="#">Sign Up</a>
-                </li>
-            </ul>
+
+    <header class="bg-white shadow-sm py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="logo"><a href="#" class="text-primary">Edu-Power</a></h1>
+            <nav class="nav">
+                {% comment %} <a class="nav-link text-primary" href="#">Services</a> {% endcomment %}
+                <a class="nav-link text-primary" href="counsellorLogin"> Are you a Counselor?</a>
+                {% comment %} <a class="nav-link text-primary" href="#">Resources</a>
+                <a class="nav-link text-primary" href="login.html">Sign In</a> {% endcomment %}
+            </nav>
         </div>
-    </nav>
- 
-    <!-- Hero Section -->
-    <section class="hero">
+    </header>
+
+    <section class="hero text-center py-5">
         <div class="container">
-            <h1>Empower Your Future with Career Counseling</h1>
-            <p>Get personalized career advice and expert guidance to make informed career decisions.</p>
-            <a href="#" class="btn btn-success btn-lg">Get Started</a>
+            <h2 class="display-4">Find the Best Career Guidance for Students</h2>
+            <p class="lead">Online Career Counseling for a Successful Future</p>
+            <div class="cta-buttons mt-4">
+                {% comment %} <button class="btn btn-primary mx-2">Choose Your Counselor</button> {% endcomment %}
+                <button class="btn btn-outline-primary mx-2">
+                    <a  href="studentLogin">Choose Your Counselor</a>
+                </button>
+                {% comment %} <button class="btn btn-outline-primary mx-2">Explore Career Paths</button> {% endcomment %}
+                <button class="btn btn-outline-primary mx-2">
+                    <a  href="career">Explore Career Paths</a>
+                </button>
+            </div>
+            {% comment %} <div class="search-bar mt-4 text-center">
+                <input type="text" class="form-control w-50 mx-auto text-center" placeholder="Search by counselor or career path">
+            </div> {% endcomment %}
         </div>
     </section>
- 
-    <!-- Services Section -->
-    <section class="services-section">
+
+    <section class="profile-cards py-5 bg-light">
         <div class="container">
-            <h2>Our Services</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Personalized Counseling</h4>
-                    <p>Schedule one-on-one sessions with expert counselors to explore various career paths based on your interests and strengths.</p>
+            <div class="row d-flex align-items-stretch">
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="profile-card card mb-4">
+                        <img src="https://casper-iitb.github.io/assets/img/naman.jpg" alt="Counselor Image" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Mr. Naman Sharma</h5>
+                            <p class="card-text">Career Counselor</p>
+                            <p class="text-muted">2 years of experience</p>
+                            <a href="#" class="btn btn-primary">Book an Appointment</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h4>Career Assessments</h4>
-                    <p>Take an interest quiz and get recommendations tailored to your skills, values, and goals.</p>
+                
+                <div class="col-md-4 d-flex align-items-stretch">
+                <div class="profile-card card mb-4">
+                    <img src="https://casper-iitb.github.io/assets/img/mriganko.jpg" alt="Counselor Image" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mr.Mriganko Shekhar Dutta</h5>
+                        <p class="card-text">Career Counselor</p>
+                        <p class="text-muted">1 years of experience</p>
+                        <a href="#" class="btn btn-primary">Book an Appointment</a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h4>Workshops & Resources</h4>
-                    <p>Access additional resources such as career guides, job market insights, and resume-building workshops.</p>
                 </div>
+
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="profile-card card mb-4">
+                        <img src="https://vedantk11.github.io/vedantk.github.io/images/MyImage2.jpg" alt="Counselor Image" class="card-img-top">
+                        
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Mr. Vedant Kalbande</h5>
+                            <p class="card-text">Education Consultant</p>
+                            <p class="text-muted">5 years of experience</p>
+                            <a href="#" class="btn btn-primary">Book an Appointment</a>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </section>
- 
-    <!-- Tools Section -->
-    {% comment %} <section class="tools-section">
-        <div class="container">
-            <h2>Technologies We Use</h2>
-            <ul class="list-unstyled">
-                <li><strong>Django</strong> – For backend development.</li>
-                <li><strong>SQL</strong> – Database management.</li>
-                <li><strong>HTML/CSS/Bootstrap</strong> – Frontend design.</li>
-                <li><strong>Python</strong> – Core programming.</li>
-                <li><strong>BeautifulSoup</strong> – Web scraping to gather career data.</li>
-            </ul>
-        </div>
-    </section> {% endcomment %}
- 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Online Career Counseling Services.</p>
-        </div>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <p>Contact us: info@edu-power.com | Follow us on social media</p>
     </footer>
- 
-    <!-- Optional JavaScript -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-{% comment %} {% extends "master.html" %}
-
-{% block body %}
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-               
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="/static/Images/Slider/b3.jpg" class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="/static/Images/GettyImages-1130678533_473619_xj1qdn.jpg" class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="/static/Images/tesla-model-3-supercharger.jpg" class="d-block w-100" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <marquee direction="up" scrollamount="3">
-                    <p style="font-weight: bold; font-size: large;">SAFETY INFORMATION</p>
-                    <ul style="font-family: 'times New Roman', Times, serif; font-size: large; font-weight: bold">
-                        <br />  <li>Always follow the EV charging safety guidelines and car safety guidelines laid down by the manufacturer when charging your vehicle.</li>
-                        <br /> <li>Properly maintain the charging station components as per the manufacturer's guidelines.</li>
-                        <br /> <li>Don't keep the vehicle battery completely full or empty.</li>
-                        <br /> <li>Check the vehicle batteries regularly.</li>
-                    </ul>
-                </marquee>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock body %} {% endcomment %}
