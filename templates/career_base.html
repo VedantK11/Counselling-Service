@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Career Portal{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-900 text-white p-4">
+        <div class="container mx-auto">
+            <a href="{% url 'career' %}" class="text-2xl font-bold hover:text-blue-200">
+                Explore Career Opportunities
+            </a>
+        </div>
+    </nav>
+    
+    <main class="py-8">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
